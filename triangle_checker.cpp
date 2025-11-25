@@ -2,32 +2,32 @@
 #include <string>
 using namespace std;
 
-string triangleType(string As, string Bs, string Cs){
-    float A = stof(As), B = stof(Bs), C = stof(Cs);
-    float sumAB = A + B;
-    float sumAC = A + C;
-    float sumBC = B + C;
-    if(sumAB > C && sumAC > B && sumBC > A){
-        if(A == B && B == C) return "Equilateral";
-        else if(A != B && A != C && B != C) return "Scalene";
-        else return "Isosceles";
+struct Triangle{
+    float sides[3];
+    bool valid = false;
+    string type = "None";
+    Triangle(float A, float B, float C){
+        sides[0] = A, sides[1] = B, sides[2] = C;
+        if(A < B+C && B < A+C && C < A+B){
+            valid = true;
+            if(A == B && B == C) type = "Equilateral";
+            else if(A != B && A != C && B != C) type = "Scalene";
+            else type = "Isosceles";
+        }
     }
-    return "";
-} 
+};
 
 int main(){
-    string sides[3] = {};
+    float sides[3] = {};
     cout << "Enter the lengths of the three sides of a triangle:" << endl;
     for(int i = 0; i <= 2; i++){
         cout << "Side " << i + 1 << ": ";
         cin >> sides[i];
     }
-    string triangle = triangleType(sides[0], sides[1], sides[2]);
+    Triangle t(sides[0], sides[1], sides[2]);
     cout << "The sides ";
-    if(!triangle.empty()){
-        cout << "form a " << triangle << " Triangle.";
-    } else{
-        cout << "DO NOT form a triangle.";
-    }
+    if(t.valid) cout << "form a " << t.type << " Triangle.";
+    else cout << "DO NOT form a triangle.";
+
     return 0;
 }
