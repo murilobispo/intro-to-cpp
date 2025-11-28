@@ -20,6 +20,19 @@ void bubbleSort(int array[], int size){
         }
     }
 }
+
+void insertionSort(int v[], int s){
+    for(int i = 0; i < s - 1; i++){
+        for(int j = i; j >= 0; j--){
+            if(v[j + 1] < v[j]){
+                swap(v[j], v[j + 1]);
+            } else{
+                break;
+            }
+        }
+    }
+}
+
 void quickSort(int array[], int size){
     
     int pivot = array[0];
@@ -57,11 +70,13 @@ void quickSort(int array[], int size){
 int main(){
     int size = 6;
     int array[size] =  {3, 0, 1, 4, 2, 5};
-    
-    quickSort(array, size);
-    
-    for(int i = 0; i < size; i++){
-        cout << array[i] << " ";
+    for(int n : array){
+        cout << n << " ";
+    }
+    cout << endl;
+    insertionSort(array, size);
+    for(int n : array){
+        cout << n << " ";
     }
     return 0;
 }
