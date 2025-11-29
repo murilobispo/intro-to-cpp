@@ -33,7 +33,19 @@ void insertionSort(int v[], int s){
     }
 }
 
-void quickSort(int array[], int size){
+void selectionSort(int v[], int size){
+    for(int i = 0; i < size; i++){
+        int aux = i;
+        for(int j = i; j < size; j++){
+            if(v[j] < v[aux]){
+                aux = j;
+            }
+        }
+        swap(v[i], v[aux]);
+    }
+}
+
+/*void quickSort(int array[], int size){
     
     int pivot = array[0];
     int r = size - 1;
@@ -65,7 +77,7 @@ void quickSort(int array[], int size){
     array[r] = array[l];
     array[l] = pivot;
     
-}
+}*/
 
 int main(){
     int size = 6;
@@ -74,7 +86,7 @@ int main(){
         cout << n << " ";
     }
     cout << endl;
-    insertionSort(array, size);
+    selectionSort(array, size);
     for(int n : array){
         cout << n << " ";
     }
