@@ -45,6 +45,17 @@ void selectionSort(int v[], int size){
     }
 }
 
+void shellSort(int v[], int size){
+    int gap = size/2;
+    for(int i = gap; i > 0; i/= 2){
+        for(int j = 0; j < size - i; j++){
+            if(v[i + j] < v[j]){
+                swap(v[i + j], v[j]);
+            }
+        }
+    }
+}
+
 /*void quickSort(int array[], int size){
     
     int pivot = array[0];
