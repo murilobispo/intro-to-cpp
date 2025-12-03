@@ -47,14 +47,20 @@ void selectionSort(int v[], int size){
 
 void shellSort(int v[], int size){
     int gap = size/2;
-    for(int i = gap; i > 0; i/= 2){
-        for(int j = 0; j < size - i; j++){
-            if(v[i + j] < v[j]){
-                swap(v[i + j], v[j]);
+    for(int i = gap; i > 0; i = i/2){
+        for(int j = 0; j < size; j++){
+            for(int k = j; k < size - i; k = k + i){
+                if(v[k] > v[k + i]){
+                    swap(v[k], v[k + i]);
+                }
+                cout << k << " " << (i + k) << endl;
             }
+            cout <<"=============" << i <<  endl;
         }
+        if(i == 2) break;
     }
 }
+
 
 /*void quickSort(int array[], int size){
     
