@@ -57,8 +57,29 @@ void shellSort(int v[], int size){
     }
 }
 
-void mergeSort(int v[], int size){
+void mergeSort(int v[], int s){
+    if(s == 1) return;
+
+    int s1 = s/2;
+    int s2 = s - s1;
+    int array1[s1], array2[s2];
+    for(int i = 0; i < s1; i++){
+        array1[i] = v[i];
+    }
+    for(int i = 0; i < s2; i++){
+        array2[i] = v[i + s1];
+    }
+    mergeSort(array1, s1);
+    mergeSort(array2, s2);
     
+    int i = 0, j = 0, k = 0;
+    while(i < s1 && j < s2){
+        if(array1[i] < array2[j]) v[k++] = array1[i++];
+        else v[k++] = array2[j++];
+    }
+    
+    while(i < s1) v[k++] = array1[i++];
+    while(j < s2) v[k++] = array2[j++];
 }
 
 /*void quickSort(int array[], int size){
